@@ -1,0 +1,13 @@
+.editPanel {
+	padding: 20px;
+	margin-top: 50px;
+	margin: 10px;
+	overflow: auto;
+	margin-bottom: 50px;
+}
+.col-form-label {
+	text-align: right;
+}
+.centerblock {
+	text-align: center;
+}

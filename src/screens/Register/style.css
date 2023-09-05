@@ -1,0 +1,14 @@
+.registerPanel {
+  padding: 20px;
+  margin-top: 50px;
+  margin: 100px;
+  overflow: auto;
+  margin-bottom: 50px;
+}
+.col-form-label {
+  text-align: left;
+}
+
+.centeritem{
+  text-align: center;
+}
