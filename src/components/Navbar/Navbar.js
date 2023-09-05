@@ -1,28 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./style.css";
 
 export class Navbar extends Component {
+	state = {
+		isOpen: false,
+	};
+
+	toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
 	render() {
+		const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
 		return (
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="#">
 						ABC COMPANY
 					</a>
-					<div class="dropdown">
+					<div
+						className="dropdown dropstyle"
+						onClick={this.toggleOpen}
+					>
 						<button
-							class="btn btn-secondary dropdown-toggle"
+							className="btn btn-secondary dropdown-toggle"
 							type="button"
 							id="dropdownMenuButton"
 							data-toggle="dropdown"
 							aria-haspopup="true"
-							aria-expanded="false"
 						>
 							{this.props.profile.first_name}{" "}
 							{this.props.profile.last_name}
 						</button>
 						<div
-							class="dropdown-menu"
+							className={menuClass}
 							aria-labelledby="dropdownMenuButton"
 						>
 							<a class="dropdown-item" href="/edit">

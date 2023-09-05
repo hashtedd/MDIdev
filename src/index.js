@@ -6,6 +6,7 @@ import configureStore from "./store/store";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 const store = configureStore();
 const root = ReactDOM.createRoot(document.getElementById("root"));
