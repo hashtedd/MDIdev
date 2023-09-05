@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ActionCreators } from "../../actions/profile";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { Button } from "react-bootstrap";
 import "./style.css";
 
 export class Confirmation extends Component {
@@ -24,13 +25,13 @@ export class Confirmation extends Component {
 					<h3>Congratulations</h3>
 					<h4>Your account has been created successfully</h4>
 					<div className="loginbtnContainer">
-						<button
-							type="button"
-							className="button"
+						<Button
+							variant="outline-success"
+							style={{ fontWeight: "bold" }}
 							onClick={this.loginBack}
 						>
-							Go to Login
-						</button>
+							GO TO LOGIN
+						</Button>
 					</div>
 				</div>
 			</div>
