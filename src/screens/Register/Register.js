@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { ActionCreators } from "../../actions/profile";
 import { formatMobileNumber, isValidEmail, setStore } from "../../utils";
+import { Button } from "react-bootstrap";
 import "./style.css";
 
 export class Register extends Component {
@@ -67,7 +68,6 @@ export class Register extends Component {
 			default:
 				break;
 		}
-		console.log(errors);
 
 		this.setState({ errors });
 	};
@@ -86,6 +86,10 @@ export class Register extends Component {
 		this.validationErrorMessage(event);
 	};
 
+	loginBack() {
+		window.location.href = "/login";
+	}
+
 	setGender(event) {
 		const { name, value } = event.target;
 		const user = this.state.user;
@@ -95,7 +99,6 @@ export class Register extends Component {
 	validateForm = (errors) => {
 		let valid = true;
 		Object.entries(errors.user).forEach((item) => {
-			console.log(item);
 			item && item[1].length > 0 && (valid = false);
 		});
 		return valid;
@@ -134,6 +137,7 @@ export class Register extends Component {
 
 		return (
 			<div className="registerPanel">
+				<div class="headtext">REGISTER TO GET STARTED</div>
 				<div className="row">
 					<div className="col-sm-6 mb-2">
 						<label className="col-sm-4 col-form-label">
@@ -312,15 +316,21 @@ export class Register extends Component {
 				</div>
 				<div className="row">
 					<div className="col-sm-12 centeritem">
-						<button
-							type="button"
-							className="button"
+						<Button
+							variant="outline-success"
+							style={{ fontWeight: "bold" }}
 							onClick={this.submitForm}
 						>
 							CREATE ACCOUNT
-						</button>
+						</Button>
+						<Button
+							variant="outline-warning"
+							style={{ fontWeight: "bold" }}
+							onClick={this.loginBack}
+						>
+							BACK TO LOGIN
+						</Button>
 					</div>
-					<div className="col-sm-4"></div>
 				</div>
 			</div>
 		);

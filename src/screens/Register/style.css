@@ -1,14 +1,19 @@
 .registerPanel {
-  padding: 20px;
-  margin-top: 50px;
-  margin: 100px;
-  overflow: auto;
-  margin-bottom: 50px;
+	padding: 20px;
+	margin-top: 50px;
+	margin: 100px;
+	overflow: auto;
+	margin-bottom: 50px;
 }
 .col-form-label {
-  text-align: left;
+	text-align: left;
 }
 
-.centeritem{
-  text-align: center;
+.centeritem {
+	text-align: center;
+}
+.headtext {
+	text-align: center;
+	font-weight: bold;
+	font-size: x-large;
 }

@@ -3,6 +3,9 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { ActionCreators } from "../../actions/profile";
 import Navbar from "../../components/Navbar";
+import ProfileImage from "../../components/ProfileImage";
+import { setStore } from "../../utils";
+import { Button } from "react-bootstrap";
 import "./style.css";
 
 export class Edit extends Component {
@@ -15,6 +18,7 @@ export class Edit extends Component {
 				last_name: this.props.profile.last_name,
 				dob: this.props.profile.dob,
 				mobile_number: this.props.profile.mobile_number,
+				profileImage: this.props.profile.profileImage,
 			},
 			validForm: false,
 			submitted: false,
@@ -32,8 +36,12 @@ export class Edit extends Component {
 		this.setState({ submitted: true });
 		this.props.dispatch(ActionCreators.Confirmation(true));
 		const user = this.state.user;
+		setStore("user", user);
 		if (user && this.props.profile) {
 			user.profileImage = this.props.profile.profileImage;
+			this.props.dispatch(
+				ActionCreators.updateProfileImage(user.profileImage)
+			);
 		}
 		event.preventDefault();
 		if (this.props.profile) {
@@ -52,7 +60,13 @@ export class Edit extends Component {
 		return (
 			<div>
 				<Navbar />
-				<div className="registerPanel">
+				<div className="col-sm-6 mb-2"></div>
+				<div className="editPanel">
+					<div className="row">
+						<div className="col-sm-6 mb-2">
+							<ProfileImage />
+						</div>
+					</div>
 					<div className="row">
 						<div className="col-sm-6 mb-2">
 							<label className="col-sm-4 col-form-label">
@@ -179,13 +193,13 @@ export class Edit extends Component {
 					</div>
 					<div className="row">
 						<div className="col-sm-12 centerblock">
-							<button
-								type="button"
-								className="button"
+							<Button
+								variant="outline-warning"
+								style={{ fontWeight: "bold" }}
 								onClick={this.submitForm}
 							>
 								UPDATE ACCOUNT
-							</button>
+							</Button>
 						</div>
 					</div>
 				</div>

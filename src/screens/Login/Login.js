@@ -3,6 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { ActionCreators } from "../../actions/profile";
 import { getStore } from "../../utils";
+import { Button } from "react-bootstrap";
 import "./style.css";
 
 export class Login extends Component {
@@ -15,6 +16,7 @@ export class Login extends Component {
 				email: "Enter Email!",
 				password: "Enter Password!",
 			},
+			loginStatus: "",
 			submitted: false,
 		};
 	}
@@ -59,8 +61,11 @@ export class Login extends Component {
 		if (this.validateForm(this.state.errors)) {
 			console.info("Valid Form");
 			const user = getStore("user");
-			console.log(this.user);
-			if (user) {
+			console.log(this.state.email);
+			if (
+				user.email === this.state.email &&
+				user.password === this.state.password
+			) {
 				this.props.dispatch(ActionCreators.login(user));
 				this.props.history.push("/home");
 			} else {
@@ -74,9 +79,10 @@ export class Login extends Component {
 	};
 
 	render() {
-		const { email, password, errors, submitted } = this.state;
+		const { email, password, errors, submitted, loginStatus } = this.state;
 		return (
 			<div className="loginForm">
+				<div class="headtext">WELCOME BACK</div>
 				<form>
 					<div>
 						<div className="col-sm-12 datablock">
@@ -137,14 +143,21 @@ export class Login extends Component {
 						</div>
 					</div>
 					<div className="row">
+						<div className="col-sm-12 center mt-1">
+							{submitted && loginStatus.length > 0 && (
+								<span className="error">{loginStatus}</span>
+							)}
+						</div>
+					</div>
+					<div className="row">
 						<div className=" center">
-							<button
-								type="submit"
-								className="button"
+							<Button
+								variant="outline-success"
+								style={{ fontWeight: "bold" }}
 								onClick={this.loginForm}
 							>
-								Login
-							</button>
+								LOGIN
+							</Button>
 						</div>
 					</div>
 					<div className="row">
